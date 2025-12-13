@@ -60,7 +60,6 @@ bool logout() {
     return false;
 }
 
-
 bool create_user(string username, string password) {
     for (int i = 0; i < MAX_USERS; i++) {
         if (users[i].username == username) {
@@ -90,7 +89,6 @@ bool delete_user(string username) {
     users[index].password = ""; 
     return true;
 }
-
 
 // HELPER FUNCTIONS
 int find_user(string username) {
