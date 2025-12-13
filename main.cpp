@@ -8,13 +8,13 @@ const int MAX_MESSAGES = 100;
 struct User {
     string username;
     string password;
-}; 
+};
 
 struct Message {
     string content;
     User *sender;
     User *receiver;
-}; 
+};
 
 User users[MAX_USERS];
 
@@ -66,7 +66,7 @@ bool create_user(string username, string password) {
             return false;
         }
     }
-    
+
     int index = find_empty_user();
 
     if (index != -1) {
@@ -80,13 +80,13 @@ bool create_user(string username, string password) {
 
 bool delete_user(string username) {
     int index = find_user(username);
-    
+
     if (index == -1) {
         return false;
     }
 
-    users[index].username = ""; 
-    users[index].password = ""; 
+    users[index].username = "";
+    users[index].password = "";
     return true;
 }
 
