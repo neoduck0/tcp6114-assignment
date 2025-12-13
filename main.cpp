@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <unistd.h>
 
 using namespace std;
 
@@ -34,6 +36,8 @@ int find_empty_user();
 int find_user(string username);
 
 int find_empty_message();
+
+bool ui_login();
 
 int main() {
     return 0;
@@ -136,4 +140,65 @@ int find_empty_message() {
         }
     }
     return -1;
+}
+
+// UI FUNCTIONS
+bool ui_login() {
+    system("clear");
+
+    string username;
+    string password;
+    int status;
+    int option;
+
+    cout
+        << "1. login\n"
+        << "2. signup\n\n"
+        << "option: ";
+    cin >> option;
+    system("clear");
+
+
+    switch (option) {
+        case 1:
+            cout << "username: ";
+            cin >> username;
+            cout << "password: ";
+            cin >> password;
+            system("clear");
+
+            status = login(username, password);
+            if (status == true) {
+                 cout << "logged in\n";
+                 sleep(3);
+                 system("clear");
+                 return true;
+            } else {
+                cout << "wrong username or password\n";
+                sleep(3);
+                system("clear");
+            }
+            break;
+        case 2:
+            cout << "username: ";
+            cin >> username;
+            cout << "password: ";
+            cin >> password;
+            system("clear");
+
+            status = create_user(username, password);
+            if (status == true) {
+                cout << "user was created\n";
+                sleep(3);
+                system("clear");
+            } else {
+                cout << "user was not created\n";
+                sleep(3);
+                system("clear");
+            }
+            break;
+        default:
+            cout << "unavailable option";
+    }
+    return false;
 }
