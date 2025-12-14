@@ -34,7 +34,7 @@ int find_empty_user();
 int find_user(string username);
 int find_empty_msg();
 
-bool ui_login();
+bool ui_signin();
 
 void ui_clear_console();
 
@@ -142,7 +142,7 @@ int find_empty_msg() {
 }
 
 // UI FUNCTIONS
-bool ui_login() {
+bool ui_signin() {
     ui_clear_console();
 
     string username;
