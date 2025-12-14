@@ -5,21 +5,21 @@
 using namespace std;
 
 const int MAX_USERS = 100;
-const int MAX_MESSAGES = 100;
+const int MAX_MSGS = 100;
 
 struct User {
     string username;
     string password;
 };
 
-struct Message {
+struct Msg {
     string content;
     User *sender;
     User *receiver;
 };
 
 User users[MAX_USERS];
-Message u_messages[MAX_MESSAGES];
+Msg msgs[MAX_MSGS];
 
 User empty_user;
 User *current_user = &empty_user;
@@ -30,12 +30,12 @@ bool logout();
 bool create_user(string username, string password);
 bool delete_user(string username);
 
-bool create_message(string content, string receiver);
+bool create_msg(string content, string receiver);
 
 int find_empty_user();
 int find_user(string username);
 
-int find_empty_message();
+int find_empty_msg();
 
 bool ui_login();
 
@@ -97,8 +97,8 @@ bool delete_user(string username) {
     return true;
 }
 
-bool create_message(string content, string receiver) {
-    int m_index = find_empty_message();
+bool create_msg(string content, string receiver) {
+    int m_index = find_empty_msg();
     if (m_index == -1) {
         return false;
     }
@@ -108,9 +108,9 @@ bool create_message(string content, string receiver) {
         return false;
     }
 
-    u_messages[m_index].sender = current_user;
-    u_messages[m_index].receiver = &users[u_index];
-    u_messages[m_index].content = content;
+    msgs[m_index].sender = current_user;
+    msgs[m_index].receiver = &users[u_index];
+    msgs[m_index].content = content;
     return true;
 }
 
@@ -133,9 +133,9 @@ int find_empty_user() {
     return -1;
 }
 
-int find_empty_message() {
-    for (int i = 0; i < MAX_MESSAGES; i++) {
-        if (u_messages[i].content == "") {
+int find_empty_msg() {
+    for (int i = 0; i < MAX_MSGS; i++) {
+        if (msgs[i].content == "") {
             return i;
         }
     }
