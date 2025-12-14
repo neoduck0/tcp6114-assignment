@@ -26,15 +26,12 @@ User *current_user = &empty_user;
 
 bool login(string username, string password);
 bool logout();
-
 bool create_user(string username, string password);
 bool delete_user(string username);
-
 bool create_msg(string content, string receiver);
 
 int find_empty_user();
 int find_user(string username);
-
 int find_empty_msg();
 
 bool ui_login();
