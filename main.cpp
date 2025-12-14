@@ -37,6 +37,8 @@ int find_empty_msg();
 bool ui_signin();
 
 void ui_clear_console();
+void ui_freeze_console();
+void ui_freeze_clear();
 
 int main() {
     return 0;
@@ -205,4 +207,13 @@ bool ui_signin() {
 // UI HELPER FUNCTIONS
 void ui_clear_console() {
     system("clear");
+}
+
+void ui_freeze_console() {
+    sleep(3);
+}
+
+void ui_freeze_clear() {
+    ui_freeze_console();
+    ui_clear_console();
 }
