@@ -36,6 +36,8 @@ int find_empty_msg();
 
 bool ui_login();
 
+void ui_clear_console();
+
 int main() {
     return 0;
 }
@@ -141,7 +143,7 @@ int find_empty_msg() {
 
 // UI FUNCTIONS
 bool ui_login() {
-    system("clear");
+    ui_clear_console();
 
     string username;
     string password;
@@ -153,7 +155,7 @@ bool ui_login() {
         << "2. signup\n\n"
         << "option: ";
     cin >> option;
-    system("clear");
+    ui_clear_console();
 
 
     switch (option) {
@@ -162,18 +164,18 @@ bool ui_login() {
             cin >> username;
             cout << "password: ";
             cin >> password;
-            system("clear");
+            ui_clear_console();
 
             status = login(username, password);
             if (status == true) {
                  cout << "logged in\n";
                  sleep(3);
-                 system("clear");
+                 ui_clear_console();
                  return true;
             } else {
                 cout << "wrong username or password\n";
                 sleep(3);
-                system("clear");
+                ui_clear_console();
             }
             break;
         case 2:
@@ -181,21 +183,26 @@ bool ui_login() {
             cin >> username;
             cout << "password: ";
             cin >> password;
-            system("clear");
+            ui_clear_console();
 
             status = create_user(username, password);
             if (status == true) {
                 cout << "user was created\n";
                 sleep(3);
-                system("clear");
+                ui_clear_console();
             } else {
                 cout << "user was not created\n";
                 sleep(3);
-                system("clear");
+                ui_clear_console();
             }
             break;
         default:
             cout << "unavailable option";
     }
     return false;
+}
+
+// UI HELPER FUNCTIONS
+void ui_clear_console() {
+    system("clear");
 }
