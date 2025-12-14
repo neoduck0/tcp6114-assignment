@@ -35,6 +35,8 @@ int find_user(string username);
 int find_empty_msg();
 
 bool ui_signin();
+bool ui_login();
+bool ui_signup();
 
 void ui_clear_console();
 void ui_freeze_console();
@@ -145,12 +147,9 @@ int find_empty_msg() {
 
 // UI FUNCTIONS
 bool ui_signin() {
-    ui_clear_console();
-
-    string username;
-    string password;
-    int status;
     int option;
+
+    bool return_bool = false;
 
     cout
         << "1. login\n"
@@ -159,49 +158,64 @@ bool ui_signin() {
     cin >> option;
     ui_clear_console();
 
-
     switch (option) {
         case 1:
-            cout << "username: ";
-            cin >> username;
-            cout << "password: ";
-            cin >> password;
-            ui_clear_console();
-
-            status = login(username, password);
-            if (status == true) {
-                 cout << "logged in\n";
-                 sleep(3);
-                 ui_clear_console();
-                 return true;
-            } else {
-                cout << "wrong username or password\n";
-                sleep(3);
-                ui_clear_console();
-            }
+            return_bool = ui_login();
             break;
         case 2:
-            cout << "username: ";
-            cin >> username;
-            cout << "password: ";
-            cin >> password;
-            ui_clear_console();
-
-            status = create_user(username, password);
-            if (status == true) {
-                cout << "user was created\n";
-                sleep(3);
-                ui_clear_console();
-            } else {
-                cout << "user was not created\n";
-                sleep(3);
-                ui_clear_console();
-            }
+            ui_signup();
             break;
         default:
-            cout << "unavailable option";
+            cout << "unavailable option\n";
+            ui_freeze_clear();
     }
-    return false;
+    return return_bool;
+}
+
+bool ui_login() {
+    string username;
+    string password;
+
+    bool return_bool = false;
+
+    cout << "username: ";
+    cin >> username;
+    cout << "password: ";
+    cin >> password;
+
+    ui_clear_console();
+
+    if (login(username, password)) {
+        cout << "logged in\n";
+        return_bool = true;
+    } else {
+        cout << "wrong username or password\n";
+    }
+    ui_freeze_clear();
+    return return_bool;
+}
+
+bool ui_signup() {
+    string username;
+    string password;
+
+    bool return_bool = false;
+
+    cout << "username: ";
+    cin >> username;
+    cout << "password: ";
+    cin >> password;
+
+    ui_clear_console();
+
+    if (create_user(username, password)) {
+        cout << "user was created\n";
+        return_bool = true;
+    } else {
+        cout << "user was not created\n(try different username)\n";
+    }
+    ui_freeze_clear();
+    return return_bool;
 }
 
 // UI HELPER FUNCTIONS
