@@ -37,6 +37,7 @@ int find_empty_msg();
 bool ui_signin();
 bool ui_login();
 bool ui_signup();
+void ui_send_msg();
 
 void ui_clear_console();
 void ui_freeze_console();
@@ -216,6 +217,30 @@ bool ui_signup() {
     }
     ui_freeze_clear();
     return return_bool;
+}
+
+void ui_send_msg() {
+    string user;
+    string msg;
+
+    ui_clear_console();
+
+    cout << "username: ";
+    cin >> user;
+
+    cout << "message: ";
+    cin >> msg;
+
+    ui_clear_console();
+
+    bool return_bool = create_msg(msg, user);
+    if (return_bool) {
+        cout << "message sent successfully\n";
+    } else {
+        cout << "message was not sent (user may not exist)\n";
+    }
+
+    ui_freeze_clear();
 }
 
 // UI HELPER FUNCTIONS
