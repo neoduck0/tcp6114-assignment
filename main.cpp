@@ -47,6 +47,7 @@ void ui_clear_console();
 void ui_freeze_console();
 void ui_freeze_clear();
 void ui_iprint(string message);
+void ui_show_msg(Msg *msg);
 
 int main() {
     return 0;
@@ -292,4 +293,22 @@ void ui_iprint(string message) {
     ui_clear_console();
     cout << message << "\n";
     ui_freeze_clear();
+}
+
+void ui_show_msg(Msg *msg) {
+    cout
+        << "------\n"
+        << msg->sender->username
+        << " @ "
+        << msg->time_sent[3]
+        << ":"
+        << msg->time_sent[4]
+        << " "
+        << msg->time_sent[2]
+        << "/"
+        << msg->time_sent[1]
+        << "\n------\n"
+        << "######\n"
+        << msg->content
+        << "\n######\n";
 }
