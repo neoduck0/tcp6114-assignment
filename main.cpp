@@ -191,7 +191,7 @@ bool ui_signin() {
     ui_clear_console();
     cout
         << "1. login\n"
-        << "2. signup\n\n"
+        << "2. signup\n"
         << "option: ";
     cin >> option;
     ui_clear_console();
