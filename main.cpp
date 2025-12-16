@@ -271,7 +271,7 @@ void ui_clear_console() {
 }
 
 void ui_freeze_console() {
-    sleep(3);
+    sleep(2);
 }
 
 void ui_freeze_clear() {
