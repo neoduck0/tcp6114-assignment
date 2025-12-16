@@ -304,6 +304,7 @@ void ui_send_msg() {
 
     cout << "username: ";
     cin >> user;
+    cin.ignore();
 
     cout << "message: ";
     getline(cin, msg);
