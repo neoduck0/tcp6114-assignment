@@ -46,6 +46,7 @@ void ui_send_msg();
 void ui_clear_console();
 void ui_freeze_console();
 void ui_freeze_clear();
+void ui_iprint(string message);
 
 int main() {
     return 0;
@@ -202,8 +203,7 @@ bool ui_signin() {
             ui_signup();
             break;
         default:
-            cout << "unavailable option\n";
-            ui_freeze_clear();
+            ui_iprint("unavailable option\n");
     }
     return return_bool;
 }
@@ -222,12 +222,11 @@ bool ui_login() {
     ui_clear_console();
 
     if (login(username, password)) {
-        cout << "logged in\n";
+        ui_iprint("logged in\n");
         return_bool = true;
     } else {
-        cout << "wrong username or password\n";
+        ui_iprint("wrong username or password\n")
     }
-    ui_freeze_clear();
     return return_bool;
 }
 
@@ -245,12 +244,11 @@ bool ui_signup() {
     ui_clear_console();
 
     if (create_user(username, password)) {
-        cout << "user was created\n";
+        ui_iprint("user was created\n");
         return_bool = true;
     } else {
-        cout << "user was not created\n(try different username)\n";
+        ui_iprint("user was not created (try different username)\n");
     }
-    ui_freeze_clear();
     return return_bool;
 }
 
@@ -270,12 +268,10 @@ void ui_send_msg() {
 
     bool return_bool = create_msg(msg, user);
     if (return_bool) {
-        cout << "message sent successfully\n";
+        ui_iprint("message sent successfully\n");
     } else {
-        cout << "message was not sent (user may not exist)\n";
+        ui_iprint("message was not sent (user may not exist)\n");
     }
-
-    ui_freeze_clear();
 }
 
 // UI HELPER FUNCTIONS
@@ -290,4 +286,9 @@ void ui_freeze_console() {
 void ui_freeze_clear() {
     ui_freeze_console();
     ui_clear_console();
+}
+
+void ui_iprint(string message) {
+    cout << message << "\n";
+    ui_freeze_clear();
 }
