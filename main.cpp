@@ -23,8 +23,7 @@ User users[MAX_USERS];
 Msg msgs[MAX_MSGS];
 Msg *inbox[MAX_MSGS];
 
-User empty_user;
-User *current_user = &empty_user;
+User *current_user = NULL;
 
 bool login(string username, string password);
 bool logout();
@@ -69,7 +68,7 @@ bool login(string username, string password) {
 
 bool logout() {
     if (current_user->username != "") {
-        current_user = &empty_user;
+        current_user = NULL;
         empty_inbox();
         return true;
     }
