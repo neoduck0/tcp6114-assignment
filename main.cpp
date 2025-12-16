@@ -20,6 +20,7 @@ struct Msg {
 
 User users[MAX_USERS];
 Msg msgs[MAX_MSGS];
+Msg *inbox[MAX_MSGS];
 
 User empty_user;
 User *current_user = &empty_user;
@@ -33,6 +34,8 @@ bool create_msg(string content, string receiver);
 int find_empty_user();
 int find_user(string username);
 int find_empty_msg();
+void load_inbox();
+void empty_inbox();
 
 bool ui_signin();
 bool ui_login();
@@ -56,6 +59,7 @@ bool login(string username, string password) {
 
     if (users[index].password == password) {
         current_user = &users[index];
+        load_inbox();
         return true;
     }
 
@@ -65,6 +69,7 @@ bool login(string username, string password) {
 bool logout() {
     if (current_user->username != "") {
         current_user = &empty_user;
+        empty_inbox();
         return true;
     }
 
@@ -144,6 +149,22 @@ int find_empty_msg() {
         }
     }
     return -1;
+}
+
+void load_inbox() {
+    int c = 0;
+    for (int i = 0; i < MAX_MSGS; i++) {
+        if (msgs[i].receiver == current_user) {
+            inbox[c] = &msgs[i];
+            c++;
+        }
+    }
+}
+
+void empty_inbox() {
+    for (int i = 0; i < MAX_MSGS; i++) {
+        inbox[i] = NULL;
+    }
 }
 
 // UI FUNCTIONS
