@@ -314,7 +314,7 @@ void ui_send_msg() {
     if (return_bool) {
         ui_iprint("message sent successfully");
     } else {
-        ui_iprint("message was not sent (user may not exist)");
+        ui_iprint("message was not sent (try a different user)");
     }
 }
 
