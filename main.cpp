@@ -22,6 +22,7 @@ struct Msg {
 User users[MAX_USERS];
 Msg msgs[MAX_MSGS];
 Msg *inbox[MAX_MSGS];
+int inbox_count = 0;
 
 User *current_user = NULL;
 
@@ -169,12 +170,14 @@ void load_inbox() {
             c++;
         }
     }
+    inbox_count = c;
 }
 
 void empty_inbox() {
     for (int i = 0; i < MAX_MSGS; i++) {
         inbox[i] = NULL;
     }
+    inbox_count = 0;
 }
 
 // UI FUNCTIONS
