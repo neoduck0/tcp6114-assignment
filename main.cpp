@@ -16,6 +16,7 @@ struct Msg {
     string content;
     User *sender;
     User *receiver;
+    int time_sent[6];
 };
 
 User users[MAX_USERS];
@@ -120,6 +121,16 @@ bool create_msg(string content, string receiver) {
     msgs[m_index].sender = current_user;
     msgs[m_index].receiver = &users[u_index];
     msgs[m_index].content = content;
+
+    time_t t = time(0);
+    tm* current = localtime(&t);
+    msgs[m_index].time_sent[0] = (current->tm_year + 1900);
+    msgs[m_index].time_sent[1] = (current->tm_mon + 1);
+    msgs[m_index].time_sent[2] = (current->tm_mday);
+    msgs[m_index].time_sent[3] = (current->tm_hour);
+    msgs[m_index].time_sent[4] = (current->tm_min);
+    msgs[m_index].time_sent[5] = (current->tm_sec);
+
     return true;
 }
 
