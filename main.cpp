@@ -203,6 +203,12 @@ bool ui_signin() {
         << "2. signup\n"
         << "option: ";
     cin >> option;
+    if (cin.fail()) {
+        cin.clear();
+        cin.ignore();
+        option = -1;
+    }
+
     ui_clear_console();
 
     switch (option) {
@@ -274,6 +280,11 @@ bool ui_home() {
         << "9. exit\n"
         << "option: ";
     cin >> option;
+    if (cin.fail()) {
+        cin.clear();
+        cin.ignore();
+        option = -1;
+    }
 
     ui_clear_console();
     switch (option) {
@@ -343,6 +354,11 @@ void ui_view_msgs() {
 
         cout << "option: ";
         cin >> option;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore();
+            option = -1;
+        }
 
         switch (option) {
             case 0:
