@@ -41,6 +41,7 @@ void empty_inbox();
 bool ui_signin();
 bool ui_login();
 bool ui_signup();
+bool ui_home();
 void ui_send_msg();
 void ui_view_msgs();
 
@@ -252,6 +253,40 @@ bool ui_signup() {
         ui_iprint("user was not created (try different username)");
     }
     return return_bool;
+}
+
+bool ui_home() {
+    int option;
+    int return_bool;
+
+    ui_clear_console();
+    cout
+        << "0. logout\n"
+        << "1. send message\n"
+        << "2. view messages\n"
+        << "9. exit\n"
+        << "option: ";
+    cin >> option;
+
+    ui_clear_console();
+    switch (option) {
+        case 0:
+            logout();
+            do {} while(!ui_signin());
+            break;
+        case 1:
+            ui_send_msg();
+            break;
+        case 2:
+            ui_view_msgs();
+            break;
+        case 9:
+            return false;
+        default:
+            ui_iprint("unavailable option");
+            break;
+    }
+    return true;
 }
 
 void ui_send_msg() {
