@@ -42,6 +42,7 @@ bool ui_signin();
 bool ui_login();
 bool ui_signup();
 void ui_send_msg();
+void ui_view_msgs();
 
 void ui_clear_console();
 void ui_freeze_console();
@@ -273,6 +274,55 @@ void ui_send_msg() {
     } else {
         ui_iprint("message was not sent (user may not exist)");
     }
+}
+
+void ui_view_msgs() {
+    int option;
+
+    ui_clear_console();
+    if (inbox_count == 0) {
+        ui_iprint("no messges to show");
+        return;
+    }
+
+    int i = inbox_count - 1;
+    while (true) {
+        ui_clear_console();
+        ui_show_msg(inbox[i]);
+        cout << "\n";
+        if (i != 0) {
+            cout << "0. next\n";
+        }
+        cout << "1. quit\n";
+        if (i != inbox_count - 1) {
+            cout << "9. previous\n";
+        }
+
+        cout << "option: ";
+        cin >> option;
+
+        switch (option) {
+            case 0:
+                if (i == 0) {
+                    ui_iprint("unavailable option");
+                } else {
+                    i--;
+                }
+                break;
+            case 1:
+                return;
+            case 9:
+                if (i == inbox_count - 1) {
+                    ui_iprint("unavailable option");
+                } else {
+                    i++;
+                }
+                break;
+            default:
+                ui_iprint("unavailable option");
+        }
+    }
+    ui_clear_console();
 }
 
 // UI HELPER FUNCTIONS
