@@ -203,7 +203,7 @@ bool ui_signin() {
             ui_signup();
             break;
         default:
-            ui_iprint("unavailable option\n");
+            ui_iprint("unavailable option");
     }
     return return_bool;
 }
@@ -222,10 +222,10 @@ bool ui_login() {
     ui_clear_console();
 
     if (login(username, password)) {
-        ui_iprint("logged in\n");
+        ui_iprint("logged in");
         return_bool = true;
     } else {
-        ui_iprint("wrong username or password\n")
+        ui_iprint("wrong username or password");
     }
     return return_bool;
 }
@@ -244,10 +244,10 @@ bool ui_signup() {
     ui_clear_console();
 
     if (create_user(username, password)) {
-        ui_iprint("user was created\n");
+        ui_iprint("user was created");
         return_bool = true;
     } else {
-        ui_iprint("user was not created (try different username)\n");
+        ui_iprint("user was not created (try different username)");
     }
     return return_bool;
 }
@@ -268,9 +268,9 @@ void ui_send_msg() {
 
     bool return_bool = create_msg(msg, user);
     if (return_bool) {
-        ui_iprint("message sent successfully\n");
+        ui_iprint("message sent successfully");
     } else {
-        ui_iprint("message was not sent (user may not exist)\n");
+        ui_iprint("message was not sent (user may not exist)");
     }
 }
 
@@ -289,6 +289,7 @@ void ui_freeze_clear() {
 }
 
 void ui_iprint(string message) {
+    ui_clear_console();
     cout << message << "\n";
     ui_freeze_clear();
 }
