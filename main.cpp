@@ -173,6 +173,7 @@ bool ui_signin() {
 
     bool return_bool = false;
 
+    ui_clear_console();
     cout
         << "1. login\n"
         << "2. signup\n\n"
