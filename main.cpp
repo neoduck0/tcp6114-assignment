@@ -125,6 +125,9 @@ bool create_msg(string content, string receiver) {
     if (u_index == -1) {
         return false;
     }
+    if (&users[u_index] == current_user) {
+        return false;
+    }
 
     msgs[m_index].sender = current_user;
     msgs[m_index].receiver = &users[u_index];
