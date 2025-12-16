@@ -306,7 +306,7 @@ void ui_send_msg() {
     cin >> user;
 
     cout << "message: ";
-    cin >> msg;
+    getline(cin, msg);
 
     ui_clear_console();
 
