@@ -76,7 +76,7 @@ bool login(string username, string password) {
 }
 
 bool logout() {
-    if (current_user->username != "") {
+    if (current_user != NULL) {
         current_user = NULL;
         empty_inbox();
         return true;
