@@ -45,6 +45,8 @@ bool ui_signup();
 bool ui_home();
 void ui_send_msg();
 void ui_view_msgs();
+void ui_edit_username();
+void ui_edit_password();
 
 void ui_clear_console();
 void ui_freeze_console();
@@ -299,6 +301,8 @@ bool ui_home() {
         << "0. logout\n"
         << "1. send message\n"
         << "2. view messages\n"
+        << "3. edit username\n"
+        << "4. edit password\n"
         << "9. exit\n"
         << "option: ";
     cin >> option;
@@ -319,6 +323,12 @@ bool ui_home() {
             break;
         case 2:
             ui_view_msgs();
+            break;
+        case 3:
+            ui_edit_username();
+            break;
+        case 4:
+            ui_edit_password();
             break;
         case 9:
             return false;
@@ -407,6 +417,65 @@ void ui_view_msgs() {
         }
     }
     ui_clear_console();
+}
+
+void ui_edit_username() {
+    string new_username;
+
+    ui_clear_console();
+
+    cout <<
+        "==================================================\n"
+        "                     Edit Username\n"
+        "==================================================\n";
+
+    cout << "new username: ";
+    cin >> new_username;
+    cin.ignore();
+
+    if (edit_username(new_username)) {
+        ui_iprint("username was updated");
+    } else {
+        ui_iprint("username was not changed (try different username)");
+    }
+}
+
+void ui_edit_password() {
+    string old_pasword;
+    string new_password;
+    string confirm_password;
+
+    ui_clear_console();
+
+    cout <<
+        "==================================================\n"
+        "                     Edit Password\n"
+        "==================================================\n";
+
+
+    cout << "old password: ";
+    getline(cin, old_pasword);
+
+    if (current_user->password != old_pasword) {
+        ui_iprint("wrong password");
+        return;
+    }
+
+    cout << "new password: ";
+    getline(cin, new_password);
+
+    cout << "confirm password: ";
+    getline(cin,confirm_password);
+
+    if (new_password != confirm_password) {
+        ui_iprint("passwords do not match");
+    }
+
+    if (!edit_password(new_password)) {
+        ui_iprint("password was not changed (ensure it is not empty)");
+    } else {
+        ui_iprint("password was updated");
+    }
 }
 
 // UI HELPER FUNCTIONS
