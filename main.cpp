@@ -28,7 +28,7 @@ User *current_user = NULL;
 
 bool login(string username, string password);
 bool logout();
-bool create_user(string username, string password);
+bool signup(string username, string password);
 bool delete_user(string username);
 bool create_msg(string content, string receiver);
 
@@ -85,7 +85,7 @@ bool logout() {
     return false;
 }
 
-bool create_user(string username, string password) {
+bool signup(string username, string password) {
     for (int i = 0; i < MAX_USERS; i++) {
         if (users[i].username == username) {
             return false;
@@ -259,7 +259,7 @@ bool ui_signup() {
 
     ui_clear_console();
 
-    if (create_user(username, password)) {
+    if (signup(username, password)) {
         ui_iprint("user was created");
         return_bool = true;
     } else {
