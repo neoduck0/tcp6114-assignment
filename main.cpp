@@ -97,6 +97,7 @@ bool signup(string username, string password) {
     if (index != -1) {
         users[index].username = username;
         users[index].password = password;
+        login(username, password);
         return true;
     }
 
@@ -216,7 +217,7 @@ bool ui_signin() {
             return_bool = ui_login();
             break;
         case 2:
-            ui_signup();
+            return_bool = ui_signup();
             break;
         default:
             ui_iprint("unavailable option");
