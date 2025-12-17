@@ -224,6 +224,7 @@ bool ui_signin() {
     cin.ignore();
     if (cin.fail()) {
         cin.clear();
+        cin.ignore();
         option = -1;
     }
 
@@ -309,6 +310,7 @@ bool ui_home() {
     cin.ignore();
     if (cin.fail()) {
         cin.clear();
+        cin.ignore();
         option = -1;
     }
 
@@ -392,6 +394,7 @@ void ui_view_msgs() {
         cin.ignore();
         if (cin.fail()) {
             cin.clear();
+            cin.ignore();
             option = -1;
         }
 
