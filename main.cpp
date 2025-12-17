@@ -205,6 +205,10 @@ bool ui_signin() {
     bool return_bool = false;
 
     ui_clear_console();
+    cout <<
+        "==================================================\n"
+        "                   Sign In\n"
+        "==================================================\n";
     cout
         << "1. login\n"
         << "2. signup\n"
@@ -280,6 +284,10 @@ bool ui_home() {
     int return_bool;
 
     ui_clear_console();
+    cout <<
+        "==================================================\n"
+        "         Welcome " << current_user->username << " Let's Get You Messaging\n"
+        "==================================================\n";
     cout
         << "0. logout\n"
         << "1. send message\n"
@@ -319,6 +327,10 @@ void ui_send_msg() {
     string msg;
 
     ui_clear_console();
+    cout <<
+        "==================================================\n"
+        "                   Send a Message\n"
+        "==================================================\n";
 
     cout << "username: ";
     cin >> user;
@@ -350,14 +362,13 @@ void ui_view_msgs() {
     while (true) {
         ui_clear_console();
         ui_show_msg(inbox[i]);
-        cout << "\n";
+        if (i != inbox_count - 1) {
+            cout << "9. previous\n";
+        }
         if (i != 0) {
             cout << "0. next\n";
         }
         cout << "1. quit\n";
-        if (i != inbox_count - 1) {
-            cout << "9. previous\n";
-        }
 
         cout << "option: ";
         cin >> option;
@@ -412,19 +423,14 @@ void ui_iprint(string message) {
 }
 
 void ui_show_msg(Msg *msg) {
-    cout
-        << "------\n"
-        << msg->sender->username
-        << " @ "
-        << msg->time_sent[3]
-        << ":"
-        << msg->time_sent[4]
-        << " "
-        << msg->time_sent[2]
-        << "/"
-        << msg->time_sent[1]
-        << "\n------\n"
-        << "######\n"
-        << msg->content
-        << "\n######\n";
+    string time_sent;
+    time_sent = msg->time_sent[3] + ":" + msg->time_sent[4] + " "
+        + msg->time_sent[2] + "/" + msg->time_sent[1];
+    cout <<
+        "==================================================\n"
+        "                   Sent By: " << msg->sender->username << "\n"
+        "                   At: " << time_sent << "\n"
+        "==================================================\n";
+    cout << msg->content << "\n"
+        "==================================================\n";
 }
