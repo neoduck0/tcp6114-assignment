@@ -373,7 +373,7 @@ void ui_view_msgs() {
 
     ui_clear_console();
     if (inbox_count == 0) {
-        ui_iprint("no messges to show");
+        ui_iprint("no messages to show");
         return;
     }
 
@@ -444,7 +444,7 @@ void ui_edit_username() {
 }
 
 void ui_edit_password() {
-    string old_pasword;
+    string old_password;
     string new_password;
     string confirm_password;
 
@@ -457,9 +457,9 @@ void ui_edit_password() {
 
 
     cout << "old password: ";
-    getline(cin, old_pasword);
+    getline(cin, old_password);
 
-    if (current_user->password != old_pasword) {
+    if (current_user->password != old_password) {
         ui_iprint("wrong password");
         return;
     }
