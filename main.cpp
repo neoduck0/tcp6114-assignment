@@ -249,7 +249,7 @@ bool ui_login() {
     cout << "username: ";
     cin >> username;
     cout << "password: ";
-    cin >> password;
+    getline(cin, password);
 
     ui_clear_console();
 
@@ -271,7 +271,7 @@ bool ui_signup() {
     cout << "username: ";
     cin >> username;
     cout << "password: ";
-    cin >> password;
+    getline(cin, password);
 
     ui_clear_console();
 
