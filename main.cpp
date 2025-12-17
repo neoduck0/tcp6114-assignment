@@ -30,6 +30,8 @@ bool login(string username, string password);
 bool logout();
 bool signup(string username, string password);
 bool create_msg(string content, string receiver);
+bool edit_username(string new_username);
+bool edit_password(string new_password);
 
 int find_empty_user();
 int find_user(string username);
@@ -137,6 +139,22 @@ bool create_msg(string content, string receiver) {
     msgs[m_index].time_sent[5] = to_string(current->tm_sec);
 
     return true;
+}
+
+bool edit_username(string new_username) {
+    if (find_user(new_username) == -1) {
+        current_user->username = new_username;
+        return true;
+    }
+    return false;
+}
+
+bool edit_password(string new_password) {
+    if (new_password != "") {
+        current_user->password = new_password;
+        return true;
+    }
+    return false;
 }
 
 // HELPER FUNCTIONS
