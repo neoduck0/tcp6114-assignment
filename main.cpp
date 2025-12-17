@@ -29,7 +29,6 @@ User *current_user = NULL;
 bool login(string username, string password);
 bool logout();
 bool signup(string username, string password);
-bool delete_user(string username);
 bool create_msg(string content, string receiver);
 
 int find_empty_user();
@@ -102,18 +101,6 @@ bool signup(string username, string password) {
     }
 
     return false;
-}
-
-bool delete_user(string username) {
-    int index = find_user(username);
-
-    if (index == -1) {
-        return false;
-    }
-
-    users[index].username = "";
-    users[index].password = "";
-    return true;
 }
 
 bool create_msg(string content, string receiver) {
