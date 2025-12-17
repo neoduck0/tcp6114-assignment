@@ -219,9 +219,9 @@ bool ui_signin() {
         << "2. signup\n"
         << "option: ";
     cin >> option;
+    cin.ignore();
     if (cin.fail()) {
         cin.clear();
-        cin.ignore();
         option = -1;
     }
 
@@ -248,6 +248,7 @@ bool ui_login() {
 
     cout << "username: ";
     cin >> username;
+    cin.ignore();
     cout << "password: ";
     getline(cin, password);
 
@@ -270,6 +271,7 @@ bool ui_signup() {
 
     cout << "username: ";
     cin >> username;
+    cin.ignore();
     cout << "password: ";
     getline(cin, password);
 
@@ -300,9 +302,9 @@ bool ui_home() {
         << "9. exit\n"
         << "option: ";
     cin >> option;
+    cin.ignore();
     if (cin.fail()) {
         cin.clear();
-        cin.ignore();
         option = -1;
     }
 
@@ -377,9 +379,9 @@ void ui_view_msgs() {
 
         cout << "option: ";
         cin >> option;
+        cin.ignore();
         if (cin.fail()) {
             cin.clear();
-            cin.ignore();
             option = -1;
         }
 
