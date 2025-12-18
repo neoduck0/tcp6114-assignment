@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <unistd.h>
+#include <limits>
 
 using namespace std;
 
@@ -225,7 +226,7 @@ bool ui_signin() {
         cin.clear();
         option = -1;
     }
-    cin.ignore();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     ui_clear_console();
 
@@ -250,7 +251,7 @@ bool ui_login() {
 
     cout << "username: ";
     cin >> username;
-    cin.ignore();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "password: ";
     getline(cin, password);
 
@@ -273,7 +274,7 @@ bool ui_signup() {
 
     cout << "username: ";
     cin >> username;
-    cin.ignore();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << "password: ";
     getline(cin, password);
 
@@ -310,7 +311,7 @@ bool ui_home() {
         cin.clear();
         option = -1;
     }
-    cin.ignore();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     ui_clear_console();
     switch (option) {
@@ -351,7 +352,7 @@ void ui_send_msg() {
 
     cout << "username: ";
     cin >> user;
-    cin.ignore();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     cout << "message: ";
     getline(cin, msg);
@@ -393,7 +394,7 @@ void ui_view_msgs() {
             cin.clear();
             option = -1;
         }
-        cin.ignore();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch (option) {
             case 0:
@@ -431,7 +432,7 @@ void ui_edit_username() {
 
     cout << "new username: ";
     cin >> new_username;
-    cin.ignore();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     if (edit_username(new_username)) {
         ui_iprint("username was updated");
