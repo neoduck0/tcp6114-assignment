@@ -384,12 +384,12 @@ void ui_view_msgs() {
         ui_clear_console();
         ui_show_msg(inbox[i]);
         if (i != inbox_count - 1) {
-            cout << "9. previous\n";
+            cout << "9. next\n";
         }
         if (i != 0) {
-            cout << "0. next\n";
+            cout << "0. previous\n";
         }
-        cout << "1. quit\n";
+        cout << "1. return home\n";
 
         cout << "option: ";
         cin >> option;
@@ -457,7 +457,7 @@ void ui_edit_password() {
         "==================================================\n";
 
 
-    cout << "old password: ";
+    cout << "current password: ";
     getline(cin, old_password);
 
     if (current_user->password != old_password) {
