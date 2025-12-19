@@ -475,10 +475,10 @@ void ui_edit_password() {
         ui_iprint("passwords do not match");
     }
 
-    if (!edit_password(new_password)) {
-        ui_iprint("password was not changed (ensure it is not empty)");
-    } else {
+    if (edit_password(new_password)) {
         ui_iprint("password was updated");
+    } else {
+        ui_iprint("password was not changed (ensure it is not empty)");
     }
 }
 
