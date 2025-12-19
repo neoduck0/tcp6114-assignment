@@ -56,8 +56,6 @@ void ui_iprint(string message);
 void ui_show_msg(Msg *msg);
 
 int main() {
-    ui_clear_console();
-
     do {} while(!ui_signin());
     do {} while(ui_home());
     return 0;
