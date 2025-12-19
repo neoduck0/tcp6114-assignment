@@ -363,8 +363,7 @@ void ui_send_msg() {
 
     ui_clear_console();
 
-    bool return_bool = create_msg(msg, user);
-    if (return_bool) {
+    if (create_msg(msg, user)) {
         ui_iprint("message sent successfully");
     } else {
         ui_iprint("message was not sent (ensure user exists and is not you)");
