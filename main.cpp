@@ -138,7 +138,7 @@ void ui_freeze_clear();
 
 // shows only the specified message in the terminal window without any
 // other output surrounding it for as long as ui_freeze_console works.
-void ui_iprint(string message);
+void ui_alert(string message);
 
 // prints a single message.
 void ui_show_msg(Msg *msg);
@@ -391,7 +391,7 @@ bool ui_signin() {
             break;
         // if the user did not choose a valid option.
         default:
-            ui_iprint("unavailable option");
+            ui_alert("unavailable option");
     }
     return return_bool;
 }
@@ -418,12 +418,12 @@ bool ui_login() {
     // login the user.
     // if user logged in.
     if (login(username, password)) {
-        ui_iprint("logged in");
+        ui_alert("logged in");
         // return true.
         return_bool = true;
     } else {
     // if user not logged in.
-        ui_iprint("wrong username or password");
+        ui_alert("wrong username or password");
     }
     return return_bool;
 }
@@ -449,12 +449,12 @@ bool ui_signup() {
 
     // if user created and logged in.
     if (signup(username, password)) {
-        ui_iprint("user was created");
+        ui_alert("user was created");
         // return true.
         return_bool = true;
     } else {
     // if user was not created.
-        ui_iprint("user was not created (try different username)");
+        ui_alert("user was not created (try different username)");
     }
     return return_bool;
 }
@@ -519,7 +519,7 @@ bool ui_home() {
             return false;
         // if the user did not choose a valid option.
         default:
-            ui_iprint("unavailable option");
+            ui_alert("unavailable option");
             break;
     }
     return true;
@@ -550,10 +550,10 @@ void ui_send_msg() {
 
     // if message is sent.
     if (create_msg(msg, user)) {
-        ui_iprint("message sent successfully");
+        ui_alert("message sent successfully");
     } else {
     // if message is not sent.
-        ui_iprint("message was not sent (ensure user exists and is not you)");
+        ui_alert("message was not sent (ensure user exists and is not you)");
     }
 }
 
@@ -564,7 +564,7 @@ void ui_view_msgs() {
     ui_clear_console();
     // if inbox is empty.
     if (inbox_count == 0) {
-        ui_iprint("no messages to show");
+        ui_alert("no messages to show");
         return;
     }
 
@@ -604,7 +604,7 @@ void ui_view_msgs() {
             case 0:
                 // if the message is the oldest message.
                 if (i == 0) {
-                    ui_iprint("unavailable option");
+                    ui_alert("unavailable option");
                 } else {
                 // if the message is not the oldest message.
                     // decrement i.
@@ -618,7 +618,7 @@ void ui_view_msgs() {
             case 9:
                 // if the message is the latest message.
                 if (i == inbox_count - 1) {
-                    ui_iprint("unavailable option");
+                    ui_alert("unavailable option");
                 } else {
                 // if the message is not the latest message.
                     // increment i
@@ -627,7 +627,7 @@ void ui_view_msgs() {
                 break;
             // if the user did not choose a valid option.
             default:
-                ui_iprint("unavailable option");
+                ui_alert("unavailable option");
         }
     }
     ui_clear_console();
@@ -652,10 +652,10 @@ void ui_edit_username() {
 
     // if username was successfully edited.
     if (edit_username(new_username)) {
-        ui_iprint("username was updated");
+        ui_alert("username was updated");
     } else {
     // if username was not edited.
-        ui_iprint("username was not changed (try different username)");
+        ui_alert("username was not changed (try different username)");
     }
 }
 
@@ -679,7 +679,7 @@ void ui_edit_password() {
 
     // if current password is wrong.
     if (current_user->password != old_password) {
-        ui_iprint("wrong password");
+        ui_alert("wrong password");
         // exit.
         return;
     }
@@ -694,15 +694,15 @@ void ui_edit_password() {
 
     // check if the new password and its confirmation are the same.
     if (new_password != confirm_password) {
-        ui_iprint("passwords do not match");
+        ui_alert("passwords do not match");
     }
 
     // if the password was edited.
     if (edit_password(new_password)) {
-        ui_iprint("password was updated");
+        ui_alert("password was updated");
     } else {
     // if the password was not edited.
-        ui_iprint("password was not changed (ensure it is not empty)");
+        ui_alert("password was not changed (ensure it is not empty)");
     }
 }
 
@@ -739,7 +739,7 @@ void ui_freeze_clear() {
     ui_clear_console();
 }
 
-void ui_iprint(string message) {
+void ui_alert(string message) {
     ui_clear_console();
     cout << message << "\n";
     ui_freeze_clear();
