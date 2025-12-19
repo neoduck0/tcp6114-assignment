@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <ctime>
+#include <cstdlib>
 #ifdef _WIN32
 #include <windows.h>
 #else
