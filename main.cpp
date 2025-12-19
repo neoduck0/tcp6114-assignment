@@ -1,7 +1,11 @@
 #include <iostream>
 #include <string>
-#include <unistd.h>
 #include <limits>
+#ifdef _WIN32
+#include <windows.h>
+#else
+#include <unistd.h>
+#endif
 
 using namespace std;
 
@@ -479,11 +483,19 @@ void ui_edit_password() {
 
 // UI HELPER FUNCTIONS
 void ui_clear_console() {
+#ifdef _WIN32
+    system("cls");
+#else
     system("clear");
+#endif
 }
 
 void ui_freeze_console() {
+#ifdef _WIN32
+    Sleep(2000);
+#else
     sleep(2);
+#endif
 }
 
 void ui_freeze_clear() {
