@@ -4,7 +4,7 @@
 #include <ctime>
 #include <cstdlib>
 
-// check if os is windows, if not assume linux based
+// check if os is windows, if not assume linux based.
 #ifdef _WIN32
 #include <windows.h>
 #else
@@ -13,7 +13,7 @@
 
 using namespace std;
 
-// set the maximum amount of users and messages in an instance
+// set the maximum amount of users and messages in an instance.
 const int MAX_USERS = 100;
 const int MAX_MSGS = 100;
 
@@ -29,19 +29,19 @@ struct Msg {
     string time_sent[6];
 };
 
-// holds all users
+// holds all users.
 User users[MAX_USERS];
 
-// holds all messages
+// holds all messages.
 Msg msgs[MAX_MSGS];
 
-// holds addresses of all messages directed to the logged in user
+// holds addresses of all messages directed to the logged in user.
 Msg *inbox[MAX_MSGS];
 
-// holds the amount of messages in the inbox array
+// holds the amount of messages in the inbox array.
 int inbox_count = 0;
 
-// holds the address of the current logged in user in the users array
+// holds the address of the current logged in user in the users array.
 User *current_user = NULL;
 
 // logs in the user.
@@ -141,7 +141,7 @@ void ui_freeze_console();
 // freezes the terminal window and then clears it.
 void ui_freeze_clear();
 
-// shows only the specified message in the terminal window without any
+// shows only the specified message in the terminal window without any.
 // other output surrounding it for as long as ui_freeze_console works.
 void ui_alert(string message);
 
@@ -230,12 +230,12 @@ bool create_msg(string content, string receiver) {
     if (u_index == -1) {
         return false;
     }
-    // if user is sending the message to themself
+    // if user is sending the message to themself.
     if (&users[u_index] == current_user) {
         return false;
     }
 
-    // create the message
+    // create the message.
     msgs[m_index].sender = current_user;
     msgs[m_index].receiver = &users[u_index];
     msgs[m_index].content = content;
@@ -322,7 +322,7 @@ int find_empty_msg() {
 void load_inbox() {
     // initialize counter c to count messages sent to current user.
     int c = 0;
-    // loop through all messages
+    // loop through all messages.
     for (int i = 0; i < MAX_MSGS; i++) {
         // if message sent to current user.
         if (msgs[i].receiver == current_user) {
@@ -368,7 +368,7 @@ bool clean_buffer() {
 // ############
 
 bool ui_signin() {
-    // declare and initialize variables
+    // declare and initialize variables.
     int option;
 
     ui_clear_console();
@@ -623,7 +623,7 @@ void ui_view_msgs() {
                     ui_alert("unavailable option");
                 } else {
                 // if the message is not the latest message.
-                    // increment i
+                    // increment i.
                     i++;
                 }
                 break;
