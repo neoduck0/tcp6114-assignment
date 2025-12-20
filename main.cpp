@@ -349,9 +349,6 @@ bool ui_signin() {
     // declare and initialize variables
     int option;
 
-    // return false by default.
-    bool return_value = false;
-
     ui_clear_console();
     // print to terminal the options.
     cout <<
@@ -381,28 +378,23 @@ bool ui_signin() {
         case 1:
             // call the login interface.
             // return the return value from the call.
-            return_value = ui_login();
-            break;
+            return ui_login();
         // if the user chose signup.
         case 2:
             // call the signup interface.
             // return the return value from the call.
-            return_value = ui_signup();
-            break;
+            return ui_signup();
         // if the user did not choose a valid option.
         default:
             ui_alert("unavailable option");
+            return false;
     }
-    return return_value;
 }
 
 bool ui_login() {
     // declare variables.
     string username;
     string password;
-
-    // return false by default.
-    bool return_value = false;
 
     // get the username from the user.
     cout << "username: ";
@@ -419,22 +411,18 @@ bool ui_login() {
     // if user logged in.
     if (login(username, password)) {
         ui_alert("logged in");
-        // return true.
-        return_value = true;
+        return true;
     } else {
     // if user not logged in.
         ui_alert("wrong username or password");
+        return false;
     }
-    return return_value;
 }
 
 bool ui_signup() {
     // declare variables.
     string username;
     string password;
-
-    // return false by default.
-    bool return_value = false;
 
     // get username.
     cout << "username: ";
@@ -450,19 +438,17 @@ bool ui_signup() {
     // if user created and logged in.
     if (signup(username, password)) {
         ui_alert("user was created");
-        // return true.
-        return_value = true;
+        return true;
     } else {
     // if user was not created.
         ui_alert("user was not created (try different username)");
+        return false;
     }
-    return return_value;
 }
 
 bool ui_home() {
     // declare variables.
     int option;
-    int return_value;
 
     ui_clear_console();
     cout <<
