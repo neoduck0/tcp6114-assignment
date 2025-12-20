@@ -95,6 +95,11 @@ void load_inbox();
 // removes all messages from the inbox array.
 void empty_inbox();
 
+// clears input buffer.
+// returns true if last input failed (eg. a letter passed to an integer variable).
+// returns false if not.
+bool clean_buffer();
+
 // shows the signin menu used to signup and login.
 // returns true if the user logs in.
 // returns false if not.
@@ -341,6 +346,23 @@ void empty_inbox() {
     inbox_count = 0;
 }
 
+bool clean_buffer() {
+    // declare variables.
+    bool return_value = false;
+
+    // if last input failed.
+    if (cin.fail()) {
+        // clear the error.
+        cin.clear();
+        // set the return value to true.
+        return_value = true;
+    }
+    // remove the input buffer leftovers until a new line character is met.
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    return return_value;
+}
+
 // ############
 // UI FUNCTIONS
 // ############
@@ -361,15 +383,13 @@ bool ui_signin() {
         << "option: ";
     // get the user option choice and store it in option.
     cin >> option;
-    // ensure the user did not input a character that is not an integer.
-    if (cin.fail()) {
-        // clear the fail state of cin.
-        cin.clear();
-        // set option to -1.
+
+    // clean the input buffer.
+    // if the user did not enter an integer.
+    if (clean_buffer()) {
+        // set option to an invalid integer option.
         option = -1;
     }
-    // remove the input buffer leftovers until a new line character is met.
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     ui_clear_console();
 
@@ -465,15 +485,13 @@ bool ui_home() {
         << "option: ";
     // get the user option choice and store it in option.
     cin >> option;
-    // ensure the user did not input a character that is not an integer.
-    if (cin.fail()) {
-        // clear the fail state of cin.
-        cin.clear();
-        // set option to -1.
+
+    // clean the input buffer.
+    // if the user did not enter an integer.
+    if (clean_buffer()) {
+        // set option to an invalid integer option.
         option = -1;
     }
-    // remove the input buffer leftovers until a new line character is met.
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     ui_clear_console();
     switch (option) {
@@ -575,15 +593,13 @@ void ui_view_msgs() {
 
         // get the user option choice and store it in option.
         cin >> option;
-        // ensure the user did not input a character that is not an integer.
-        if (cin.fail()) {
-            // clear the fail state of cin.
-            cin.clear();
-            // set option to -1.
+
+        // clean the input buffer.
+        // if the user did not enter an integer.
+        if (clean_buffer()) {
+            // set option to an invalid integer option.
             option = -1;
         }
-        // remove the input buffer leftovers until a new line character is met.
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
         switch (option) {
             // if the user chose to view the previous message.
