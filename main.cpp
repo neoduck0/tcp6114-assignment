@@ -697,6 +697,8 @@ void ui_edit_password() {
     // check if the new password and its confirmation are the same.
     if (new_password != confirm_password) {
         ui_alert("passwords do not match");
+        // exit.
+        return;
     }
 
     // if the password was edited.
