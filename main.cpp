@@ -4,7 +4,7 @@
 #include <ctime>
 #include <cstdlib>
 
-// check if os is windows, if not assume linux based.
+// check if os is windows, if not assume unix based.
 #ifdef _WIN32
 #include <windows.h>
 #else
